@@ -1,6 +1,10 @@
 #include <iostream>
+#include "Representation/Game.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Doodle jump starten!" << std::endl;
+    while(true){
+        Game* game = new Game(400, 700);
+    }
     return 0;
 }

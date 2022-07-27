@@ -6,11 +6,24 @@
 #define DOODLE_JUMP_WINDOW_H
 
 
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include "../Logic/IWindow.h"
 
-class Window {
-
+class Window: public IWindow{
+private:
+    sf::RenderWindow* window = nullptr;
+    int height = 0;
+    int width = 0;
+public:
+    Window(int width, int height, sf::RenderWindow*);
+    void clear() override;
+    void display() override;
+    void close() override;
+    char keyBoardPress() override;
+    int getWindowHeight() override;
+    int getWindowsWidth() override;
 };
 
 
-
-#endif //DOODLE_JUMP_WINDOW_H
+#endif//DOODLE_JUMP_WINDOW_H
