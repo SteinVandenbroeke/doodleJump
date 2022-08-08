@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_package(SFML COMPONENTS graphics window system)
 
-add_library(DoodleJumpLib Logic/Bonus.h Logic/Bonus.cpp
+add_library(DoodleJumpLib
         Logic/Camera.h Logic/Camera.cpp
         Logic/Random.h Logic/Random.cpp
         Logic/Stopwatch.h Logic/Stopwatch.cpp

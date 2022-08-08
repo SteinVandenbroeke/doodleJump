@@ -12,11 +12,11 @@
 
 class Window: public IWindow{
 private:
-    sf::RenderWindow* window = nullptr;
+    sf::RenderWindow& window;
     int height = 0;
     int width = 0;
 public:
-    Window(int width, int height, sf::RenderWindow*);
+    Window(int width, int height, sf::RenderWindow&);
     void clear() override;
     void display() override;
     void close() override;

@@ -4,17 +4,16 @@
 
 #include "Window.h"
 
-Window::Window(int width, int height, sf::RenderWindow* window): width(width), height(height) {
-    this->window = window;
-}
+Window::Window(int width, int height, sf::RenderWindow& window): width(width), height(height), window(window){}
+
 void Window::clear() {
-    this->window->clear();
+    this->window.clear();
 }
 void Window::display() {
-    this->window->display();
+    this->window.display();
 }
 void Window::close() {
-    this->window->close();
+    this->window.close();
 }
 
 char Window::keyBoardPress() {

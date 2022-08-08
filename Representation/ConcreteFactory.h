@@ -11,19 +11,23 @@
 
 class ConcreteFactory: public AbstractFactory{
 private:
-    sf::RenderWindow* window = nullptr;
+    sf::RenderWindow& window;
 public:
     //std::vector<Platform*> getPlatforms();
     //Doodler* getDoodler();
-    ConcreteFactory(sf::RenderWindow* window);
+    ConcreteFactory(sf::RenderWindow& window);
     //World* getWorld();
 
-    std::shared_ptr<DoodlerLogic> createDoodler(World* world) override;
-    std::shared_ptr<PlatformLogic> createPlatform(double locationX, double locationY,World* world) override;
-    std::shared_ptr<HorizontalPlatformLogic> createHorizontalPlatform(double locationX, double locationY,World* world) override;
-    std::shared_ptr<VerticalPlatformLogic> createVerticalPlatform(double locationX, double locationY,World* world) override;
-    std::shared_ptr<TemporaryPlatformLogic> createTemporaryPlatform(double locationX, double locationY,World* world) override;
+    std::shared_ptr<DoodlerLogic> createDoodler(World& world) override;
+    std::shared_ptr<PlatformLogic> createPlatform(double locationX, double locationY,World& world) override;
+    std::shared_ptr<HorizontalPlatformLogic> createHorizontalPlatform(double locationX, double locationY,World& world) override;
+    std::shared_ptr<VerticalPlatformLogic> createVerticalPlatform(double locationX, double locationY,World& world) override;
+    std::shared_ptr<TemporaryPlatformLogic> createTemporaryPlatform(double locationX, double locationY,World& world) override;
+    std::shared_ptr<VerticalRandomPlatformLogic> createVerticalRandomPlatform(double locationX, double locationY,World& world) override;
+    std::shared_ptr<HorizontalRandomPlatformLogic> createHorizontalRandomPlatform(double locationX, double locationY,World& world) override;
+    std::shared_ptr<SpringLogic> createSpring(double locationX, double locationY,World& world) override;
+    std::shared_ptr<JetpackLogic> createJetpack(double locationX, double locationY,World& world) override;
+    std::shared_ptr<BGTileLogic> createBGTile(World& world) override;
 };
-
 
 #endif //DOODLE_JUMP_CONCRETEFACTORY_H

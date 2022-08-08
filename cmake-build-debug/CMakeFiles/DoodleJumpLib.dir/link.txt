@@ -1,0 +1,2 @@
+/usr/bin/ar qc libDoodleJumpLib.a  CMakeFiles/DoodleJumpLib.dir/Logic/Camera.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/Random.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/Stopwatch.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/Subject.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/Observer.cpp.o CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.o
+/usr/bin/ranlib libDoodleJumpLib.a
