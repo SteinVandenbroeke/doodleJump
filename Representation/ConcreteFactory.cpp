@@ -75,3 +75,8 @@ std::shared_ptr<BGTileLogic> ConcreteFactory::createBGTile(World &world) {
     new BGTile(bgTileLogic, window);
     return bgTileLogic;
 }
+std::shared_ptr<Score> ConcreteFactory::createScore(World &world) {
+    std::shared_ptr<Score> score = std::make_shared<Score>(world);
+    new ScoreLabel(score, window);
+    return score;
+}

@@ -5,10 +5,10 @@
 #ifndef TESTREPO_ENTITY_H
 #define TESTREPO_ENTITY_H
 
-#include <SFML/Graphics.hpp>
 #include "../Logic/EntityLogic.h"
-#include "../Logic/Camera.h"
+#include "../Logic/Score.h"
 #include "../Logic/World.h"
+#include <SFML/Graphics.hpp>
 
 class Entity: public EntityObserver{
 protected:
@@ -58,6 +58,18 @@ protected:
     std::vector<std::unique_ptr<sf::RectangleShape>> entityGrahic;
 public:
     BGTile(std::shared_ptr<BGTileLogic> logicEntity, sf::RenderWindow& window);
+    void update() override;
+    void draw() override;
+};
+
+
+
+class ScoreLabel: public Entity{
+private:
+    sf::Font font;
+    sf::Text text;
+public:
+    ScoreLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow& window);
     void update() override;
     void draw() override;
 };

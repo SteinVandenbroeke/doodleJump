@@ -7,8 +7,9 @@
 
 World::World(IWindow& window, AbstractFactory& factory): window(window), factory(factory), camera(Camera(window.getWindowsWidth(), window.getWindowHeight())) {
     std::cout << "create doodle" << std::endl;
-    doodler = this->factory.createDoodler(*this);
+    this->doodler = this->factory.createDoodler(*this);
     this->bgTile = this->factory.createBGTile(*this);
+    this->score = this->factory.createScore(*this);
     std::cout << "create doodle ok" << std::endl;
     platforms.push_back(this->factory.createPlatform(0,0, *this));
     generatePlatforms();
@@ -16,12 +17,12 @@ World::World(IWindow& window, AbstractFactory& factory): window(window), factory
 
 bool World::update() {
     this->stopwatch->newFrame();
-    this->updatePlatforms();
-
     this->bgTile->update();
+    this->updatePlatforms();
     doodler->update();
-    doodler->checkPlatformCollisions(this->platforms);
     doodler->checkBonusCollisions(this->bonussen);
+    doodler->checkPlatformCollisions(this->platforms);
+    this->score->update();
 
     //Check if world moves up
     if(window.keyBoardPress() == 'Q'){
@@ -94,7 +95,7 @@ void World::updatePlatforms() {
 }
 
 std::shared_ptr<PlatformLogic> World::getRandomPlatform(double platformXLocation, double platformYLocation) {
-    double score = 200; // change!
+    double score = 200; //change!
     int maxChange = 1000;
     int randomNumber = std::min(random->randomNumber(0, score), maxChange);
     if(randomNumber < 100){
@@ -137,10 +138,10 @@ std::shared_ptr<BonusesLogic> World::createJetPack(PlatformLogic &platform) {
     return jetpack;
 }
 
-
 const Random &World::getRandom() const {
     return *random;
 }
+
 DoodlerLogic &World::getDoodle() {
     return *this->doodler;
 }

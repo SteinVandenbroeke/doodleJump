@@ -8,6 +8,7 @@ CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/EntityLogic.h
 CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/IWindow.h
 CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/Observer.h
 CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/Random.h
+CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/Score.h
 CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/Stopwatch.h
 CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/Subject.h
 CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o: ../Logic/World.h
@@ -26,6 +27,7 @@ CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/EntityLogic.h
 CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/IWindow.h
 CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/Observer.h
 CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/Random.h
+CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/Score.h
 CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/Stopwatch.h
 CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/Subject.h
 CMakeFiles/DoodleJumpLib.dir/Logic/EntityLogic.cpp.o: ../Logic/World.h
@@ -44,6 +46,17 @@ CMakeFiles/DoodleJumpLib.dir/Logic/Observer.cpp.o: ../Logic/Subject.h
 CMakeFiles/DoodleJumpLib.dir/Logic/Random.cpp.o: ../Logic/Random.cpp
 CMakeFiles/DoodleJumpLib.dir/Logic/Random.cpp.o: ../Logic/Random.h
 
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Camera.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/EntityLogic.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/IWindow.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Observer.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Random.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Score.cpp
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Score.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Stopwatch.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Subject.h
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/World.h
+
 CMakeFiles/DoodleJumpLib.dir/Logic/Stopwatch.cpp.o: ../Logic/Stopwatch.cpp
 CMakeFiles/DoodleJumpLib.dir/Logic/Stopwatch.cpp.o: ../Logic/Stopwatch.h
 
@@ -57,6 +70,7 @@ CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/EntityLogic.h
 CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/IWindow.h
 CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/Observer.h
 CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/Random.h
+CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/Score.h
 CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/Stopwatch.h
 CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/Subject.h
 CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o: ../Logic/World.cpp

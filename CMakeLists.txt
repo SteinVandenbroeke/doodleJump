@@ -14,7 +14,9 @@ add_library(DoodleJumpLib
         Logic/Subject.h Logic/Subject.cpp
         Logic/AbstractFactory.h Logic/AbstractFactory.cpp
         Logic/Observer.h Logic/Observer.cpp
-        Logic/IWindow.h Logic/IWindow.cpp)
+        Logic/IWindow.h Logic/IWindow.cpp
+        Logic/Score.h   Logic/Score.cpp
+        )
 
 add_executable(doodle_jump main.cpp
         Representation/Game.h Representation/Game.cpp

@@ -8,6 +8,7 @@ CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/IWindow.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Observer.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Random.h
+ /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Stopwatch.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Subject.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h
@@ -20,6 +21,7 @@ CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/IWindow.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Observer.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Random.h
+ /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Stopwatch.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Subject.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h
@@ -32,6 +34,7 @@ CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/IWindow.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Observer.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Random.h
+ /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Stopwatch.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Subject.h
  /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h

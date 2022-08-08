@@ -7,6 +7,7 @@ CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/Entity
 CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/IWindow.h
 CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/Observer.h
 CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/Random.h
+CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/Score.h
 CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/Stopwatch.h
 CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/Subject.h
 CMakeFiles/doodle_jump.dir/Representation/ConcreteFactory.cpp.o: ../Logic/World.h
@@ -19,6 +20,7 @@ CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/EntityLogic.h
 CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/IWindow.h
 CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/Observer.h
 CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/Random.h
+CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/Score.h
 CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/Stopwatch.h
 CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/Subject.h
 CMakeFiles/doodle_jump.dir/Representation/Entity.cpp.o: ../Logic/World.h
@@ -31,6 +33,7 @@ CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/EntityLogic.h
 CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/IWindow.h
 CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/Observer.h
 CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/Random.h
+CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/Score.h
 CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/Stopwatch.h
 CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/Subject.h
 CMakeFiles/doodle_jump.dir/Representation/Game.cpp.o: ../Logic/World.h

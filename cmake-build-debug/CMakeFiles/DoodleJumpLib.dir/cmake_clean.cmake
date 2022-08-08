@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.o"
   "CMakeFiles/DoodleJumpLib.dir/Logic/Observer.cpp.o"
   "CMakeFiles/DoodleJumpLib.dir/Logic/Random.cpp.o"
+  "CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o"
   "CMakeFiles/DoodleJumpLib.dir/Logic/Stopwatch.cpp.o"
   "CMakeFiles/DoodleJumpLib.dir/Logic/Subject.cpp.o"
   "CMakeFiles/DoodleJumpLib.dir/Logic/World.cpp.o"

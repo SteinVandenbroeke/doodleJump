@@ -174,6 +174,19 @@ CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/IWindow.cpp" -o CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.s
 
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: CMakeFiles/DoodleJumpLib.dir/flags.make
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o: ../Logic/Score.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o -c "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.cpp"
+
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.cpp" > CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.i
+
+CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.cpp" -o CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.s
+
 # Object files for target DoodleJumpLib
 DoodleJumpLib_OBJECTS = \
 "CMakeFiles/DoodleJumpLib.dir/Logic/Camera.cpp.o" \
@@ -184,7 +197,8 @@ DoodleJumpLib_OBJECTS = \
 "CMakeFiles/DoodleJumpLib.dir/Logic/Subject.cpp.o" \
 "CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o" \
 "CMakeFiles/DoodleJumpLib.dir/Logic/Observer.cpp.o" \
-"CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.o"
+"CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.o" \
+"CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o"
 
 # External object files for target DoodleJumpLib
 DoodleJumpLib_EXTERNAL_OBJECTS =
@@ -198,9 +212,10 @@ libDoodleJumpLib.a: CMakeFiles/DoodleJumpLib.dir/Logic/Subject.cpp.o
 libDoodleJumpLib.a: CMakeFiles/DoodleJumpLib.dir/Logic/AbstractFactory.cpp.o
 libDoodleJumpLib.a: CMakeFiles/DoodleJumpLib.dir/Logic/Observer.cpp.o
 libDoodleJumpLib.a: CMakeFiles/DoodleJumpLib.dir/Logic/IWindow.cpp.o
+libDoodleJumpLib.a: CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o
 libDoodleJumpLib.a: CMakeFiles/DoodleJumpLib.dir/build.make
 libDoodleJumpLib.a: CMakeFiles/DoodleJumpLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libDoodleJumpLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libDoodleJumpLib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/DoodleJumpLib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DoodleJumpLib.dir/link.txt --verbose=$(VERBOSE)
 

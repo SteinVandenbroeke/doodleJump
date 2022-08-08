@@ -16,7 +16,7 @@ std::shared_ptr<Stopwatch> Stopwatch::instance = 0;
 std::shared_ptr<Random> Random::instance = 0;
 Game::Game(int width, int height) {
     sf::RenderWindow renderWindow(sf::VideoMode(width, height), "Doodle jump");
-    renderWindow.setFramerateLimit(120);
+    renderWindow.setFramerateLimit(60);
     Window window(width, height, renderWindow);
     ConcreteFactory factory(renderWindow);
     World world(window, factory);

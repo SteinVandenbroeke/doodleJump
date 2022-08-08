@@ -28,6 +28,7 @@ public:
     std::shared_ptr<SpringLogic> createSpring(double locationX, double locationY,World& world) override;
     std::shared_ptr<JetpackLogic> createJetpack(double locationX, double locationY,World& world) override;
     std::shared_ptr<BGTileLogic> createBGTile(World& world) override;
+    std::shared_ptr<Score> createScore(World& world) override;
 };
 
 #endif //DOODLE_JUMP_CONCRETEFACTORY_H

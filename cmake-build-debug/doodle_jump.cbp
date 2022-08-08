@@ -162,6 +162,12 @@
 		<Unit filename="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Random.h">
 			<Option target="DoodleJumpLib"/>
 		</Unit>
+		<Unit filename="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.cpp">
+			<Option target="DoodleJumpLib"/>
+		</Unit>
+		<Unit filename="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.h">
+			<Option target="DoodleJumpLib"/>
+		</Unit>
 		<Unit filename="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Stopwatch.cpp">
 			<Option target="DoodleJumpLib"/>
 		</Unit>

@@ -6,29 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/AbstractFactory.cpp
-AbstractFactory.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/AbstractFactory.h
-
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/AbstractFactory.h
-World.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h
-
 /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Camera.h
 Stopwatch.h
 /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Stopwatch.h
 memory
 -
-
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/EntityLogic.cpp
-EntityLogic.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/EntityLogic.h
-World.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h
-math.h
--
-Observer.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Observer.h
 
 /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/EntityLogic.h
 Camera.h
@@ -64,6 +46,18 @@ cstdlib
 memory
 -
 
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.cpp
+Score.h
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.h
+World.h
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h
+
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.h
+EntityLogic.h
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/EntityLogic.h
+Subject.h
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Subject.h
+
 /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Stopwatch.h
 chrono
 -
@@ -78,21 +72,17 @@ Observer.h
 list
 -
 
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.cpp
-World.h
 /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h
-AbstractFactory.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/AbstractFactory.h
-
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/World.h
-EntityLogic.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/EntityLogic.h
-vector
--
 Camera.h
 /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Camera.h
-math.h
-/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/math.h
+EntityLogic.h
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/EntityLogic.h
 IWindow.h
 /mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/IWindow.h
+Score.h
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/Score.h
+math.h
+/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/Logic/math.h
+vector
+-
 

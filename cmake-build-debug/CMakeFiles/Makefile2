@@ -76,12 +76,12 @@ clean: CMakeFiles/DoodleJumpLib.dir/clean
 CMakeFiles/doodle_jump.dir/all: CMakeFiles/DoodleJumpLib.dir/all
 	$(MAKE) -f CMakeFiles/doodle_jump.dir/build.make CMakeFiles/doodle_jump.dir/depend
 	$(MAKE) -f CMakeFiles/doodle_jump.dir/build.make CMakeFiles/doodle_jump.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" --progress-num=11,12,13,14,15,16 "Built target doodle_jump"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" --progress-num=12,13,14,15,16,17 "Built target doodle_jump"
 .PHONY : CMakeFiles/doodle_jump.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/doodle_jump.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" 16
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" 17
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/doodle_jump.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/doodle_jump.dir/rule
@@ -103,12 +103,12 @@ CMakeFiles/doodle_jump.dir/clean:
 CMakeFiles/DoodleJumpLib.dir/all:
 	$(MAKE) -f CMakeFiles/DoodleJumpLib.dir/build.make CMakeFiles/DoodleJumpLib.dir/depend
 	$(MAKE) -f CMakeFiles/DoodleJumpLib.dir/build.make CMakeFiles/DoodleJumpLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target DoodleJumpLib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target DoodleJumpLib"
 .PHONY : CMakeFiles/DoodleJumpLib.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/DoodleJumpLib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" 11
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/DoodleJumpLib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/onedrive - Uantwerpen/OneDrive - Universiteit Antwerpen/Documenten/Jaar 2 UA/Advanced programming/Project doodle jump/doodleJump/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/DoodleJumpLib.dir/rule

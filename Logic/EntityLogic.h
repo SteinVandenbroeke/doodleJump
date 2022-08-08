@@ -39,6 +39,9 @@ public:
     virtual std::string getCustumTexture(){
         return "";
     }
+    virtual std::vector<int> getHorizontalLines(){return std::vector<int>();}
+    virtual int getCurrentScore(){return 0;}
+
 
 protected:
     std::pair<float, float> locationXY;
@@ -128,9 +131,12 @@ public:
 };
 
 class BGTileLogic: public EntityLogic{
+private:
+std::vector<int> horizontalLines;
 public:
     explicit BGTileLogic(World& world);
     void update() override;
+    std::vector<int> getHorizontalLines() override;
 };
 
 class DoodlerLogic: public EntityLogic{

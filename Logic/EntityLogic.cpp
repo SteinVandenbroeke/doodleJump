@@ -326,8 +326,20 @@ void JetpackLogic::update() {
 }
 
 BGTileLogic::BGTileLogic(World &world1) : EntityLogic(world1) {
-    std::cout << "test" << std::endl;
+    for(int i = 0; i < this->getWorld().getCamera().getScreenHeight(); i += 20){
+        this->horizontalLines.push_back(i);
+    }
 }
+
 void BGTileLogic::update() {
+
+    while(*this->horizontalLines.begin() < this->getWorld().getCamera().getHeight()){
+        this->horizontalLines.erase(this->horizontalLines.begin());
+        this->horizontalLines.push_back(this->horizontalLines.back() + 20);
+    }
     updateObservers();
+}
+
+std::vector<int> BGTileLogic::getHorizontalLines() {
+    return this->horizontalLines;
 }

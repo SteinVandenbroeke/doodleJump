@@ -14,12 +14,15 @@ std::pair<float, float> Camera::coordinateToPixel(const std::pair<float,float>& 
             (this->screenHeight - ((coordinate.second + entity->getYSize()) - this->height)));
 }
 
+float Camera::yCoordinateToPixel(float y) const {
+    return (this->screenHeight - (y - this->height));
+}
+
 void Camera::addToHeight(unsigned int height) {
     if(height < 0){
         //throw TODO
     }
     this->height += height;
-
 }
 
 int Camera::getScreenWidth() const {

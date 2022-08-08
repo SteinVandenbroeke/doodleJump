@@ -16,6 +16,7 @@ class Camera {
 public:
     Camera(int screenWidth, int screenHeight);
     std::pair<float, float> coordinateToPixel(const std::pair<float,float>& coordinate, const std::shared_ptr<EntityLogic> entity) const;
+    float yCoordinateToPixel(float y) const;
     void addToHeight(unsigned int height);
     int getScreenWidth() const;
     int getScreenHeight() const;

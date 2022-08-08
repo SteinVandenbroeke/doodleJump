@@ -4,11 +4,12 @@
 
 #ifndef TESTREPO_WORLD_H
 #define TESTREPO_WORLD_H
-#include "EntityLogic.h"
-#include <vector>
 #include "Camera.h"
-#include "math.h"
+#include "EntityLogic.h"
 #include "IWindow.h"
+#include "Score.h"
+#include "math.h"
+#include <vector>
 
 class AbstractFactory;
 class World {
@@ -30,6 +31,7 @@ public:
     std::shared_ptr<BonusesLogic> createJetPack(PlatformLogic& platform);
     //DoodlerLogic* getDoodleLogic() const;
 private:
+    std::shared_ptr<Score> score;
     std::shared_ptr<DoodlerLogic> doodler;
     std::shared_ptr<BGTileLogic> bgTile;
     std::vector<std::shared_ptr<PlatformLogic>> platforms;

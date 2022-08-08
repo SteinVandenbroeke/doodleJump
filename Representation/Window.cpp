@@ -7,7 +7,7 @@
 Window::Window(int width, int height, sf::RenderWindow& window): width(width), height(height), window(window){}
 
 void Window::clear() {
-    this->window.clear();
+    this->window.clear(sf::Color(255, 239, 196));
 }
 void Window::display() {
     this->window.display();

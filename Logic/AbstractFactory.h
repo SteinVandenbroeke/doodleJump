@@ -4,6 +4,7 @@
 
 #ifndef DOODLE_JUMP_ABSTRACTFACTORY_H
 #define DOODLE_JUMP_ABSTRACTFACTORY_H
+#include "Score.h"
 #include "World.h"
 
 
@@ -21,5 +22,6 @@ public:
     virtual std::shared_ptr<SpringLogic> createSpring(double locationX, double locationY,World& world) = 0;
     virtual std::shared_ptr<JetpackLogic> createJetpack(double locationX, double locationY,World& world) = 0;
     virtual std::shared_ptr<BGTileLogic> createBGTile(World& world) = 0;
+    virtual std::shared_ptr<Score> createScore(World& world) = 0;
 };
 #endif //DOODLE_JUMP_ABSTRACTFACTORY_H

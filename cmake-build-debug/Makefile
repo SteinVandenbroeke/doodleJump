@@ -298,6 +298,33 @@ Logic/Random.cpp.s:
 	$(MAKE) -f CMakeFiles/DoodleJumpLib.dir/build.make CMakeFiles/DoodleJumpLib.dir/Logic/Random.cpp.s
 .PHONY : Logic/Random.cpp.s
 
+Logic/Score.o: Logic/Score.cpp.o
+
+.PHONY : Logic/Score.o
+
+# target to build an object file
+Logic/Score.cpp.o:
+	$(MAKE) -f CMakeFiles/DoodleJumpLib.dir/build.make CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.o
+.PHONY : Logic/Score.cpp.o
+
+Logic/Score.i: Logic/Score.cpp.i
+
+.PHONY : Logic/Score.i
+
+# target to preprocess a source file
+Logic/Score.cpp.i:
+	$(MAKE) -f CMakeFiles/DoodleJumpLib.dir/build.make CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.i
+.PHONY : Logic/Score.cpp.i
+
+Logic/Score.s: Logic/Score.cpp.s
+
+.PHONY : Logic/Score.s
+
+# target to generate assembly for a file
+Logic/Score.cpp.s:
+	$(MAKE) -f CMakeFiles/DoodleJumpLib.dir/build.make CMakeFiles/DoodleJumpLib.dir/Logic/Score.cpp.s
+.PHONY : Logic/Score.cpp.s
+
 Logic/Stopwatch.o: Logic/Stopwatch.cpp.o
 
 .PHONY : Logic/Stopwatch.o
@@ -542,6 +569,9 @@ help:
 	@echo "... Logic/Random.o"
 	@echo "... Logic/Random.i"
 	@echo "... Logic/Random.s"
+	@echo "... Logic/Score.o"
+	@echo "... Logic/Score.i"
+	@echo "... Logic/Score.s"
 	@echo "... Logic/Stopwatch.o"
 	@echo "... Logic/Stopwatch.i"
 	@echo "... Logic/Stopwatch.s"
