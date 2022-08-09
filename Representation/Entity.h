@@ -35,6 +35,20 @@ public:
     void draw() override;
 };
 
+class Enemy0: public TextureEntity {
+public:
+    Enemy0(std::shared_ptr<Enemy0Logic> logicEntity, sf::RenderWindow& window);
+};
+
+/*
+class Enemy1: public TextureEntity {
+public:
+    Enemy1(std::shared_ptr<Enemy1Logic> logicEntity, sf::RenderWindow& window);
+    void update() override;
+    void draw() override;
+};
+*/
+
 class Platform: public Entity{
     sf::RectangleShape* entityGrahic;
 public:
@@ -62,16 +76,28 @@ public:
     void draw() override;
 };
 
-
-
-class ScoreLabel: public Entity{
+class Label: public Entity{
 private:
     sf::Font font;
+
+protected:
     sf::Text text;
+
+public:
+    Label(std::shared_ptr<Score> logicEntity, sf::RenderWindow& window);
+    void draw() override;
+};
+
+class ScoreLabel: public Label{
 public:
     ScoreLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow& window);
     void update() override;
-    void draw() override;
+};
+
+class HpLabel: public Label{
+public:
+    HpLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow& window);
+    void update() override;
 };
 
 #endif //TESTREPO_ENTITY_H

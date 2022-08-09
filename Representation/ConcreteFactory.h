@@ -25,6 +25,7 @@ public:
     std::shared_ptr<TemporaryPlatformLogic> createTemporaryPlatform(double locationX, double locationY,World& world) override;
     std::shared_ptr<VerticalRandomPlatformLogic> createVerticalRandomPlatform(double locationX, double locationY,World& world) override;
     std::shared_ptr<HorizontalRandomPlatformLogic> createHorizontalRandomPlatform(double locationX, double locationY,World& world) override;
+    std::shared_ptr<Enemy0Logic> createEnemy(double locationX, double locationY, World& world) override;
     std::shared_ptr<SpringLogic> createSpring(double locationX, double locationY,World& world) override;
     std::shared_ptr<JetpackLogic> createJetpack(double locationX, double locationY,World& world) override;
     std::shared_ptr<BGTileLogic> createBGTile(World& world) override;

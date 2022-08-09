@@ -13,7 +13,7 @@
 #include "Subject.h"
 #include <memory>
 
-enum EntityType { PlatformLogicE, DoodleLogicE, ItemLogicE, UndefinedLogicE, SpringLogicE };
+enum EntityType { PlatformLogicE, DoodleLogicE, ItemLogicE, UndefinedLogicE, SpringLogicE, PlatmorLogicE };
 
 class World;
 class EntityObserver;
@@ -50,10 +50,39 @@ protected:
     World& world;
 };
 
-class BonusesLogic: public EntityLogic{
+class PlatformItem: public EntityLogic{
+public:
+    PlatformItem(double locationX, double locationY, World&);
+    void updateLocation(double locationX, double locationY);
+    void update() override = 0;
+};
+
+class EnemyLogic: public PlatformItem{
+protected:
+    bool previousCollisionDooldle = false;
+public:
+    EnemyLogic(double locationX, double locationY, World&);
+    void update() override;
+    //TODO
+};
+
+class Enemy0Logic: public EnemyLogic{
+public:
+    Enemy0Logic(double locationX, double locationY, World&);
+    void update() override;
+};
+
+/*
+class Enemie1Logic: public EnemieLogic{
+public:
+    Enemie1Logic(double locationX, double locationY, World&);
+    void update() override;
+};
+*/
+
+class BonusesLogic: public PlatformItem{
 public:
     BonusesLogic(double locationX, double locationY, World&);
-    void updateLocation(double locationX, double locationY);
     //TODO
 };
 
@@ -73,7 +102,7 @@ public:
 class PlatformLogic: public EntityLogic{
 private:
     int hexColor = 0x229900ff;
-    std::shared_ptr<BonusesLogic> bonus = nullptr;
+    std::shared_ptr<PlatformItem> bonus = nullptr;
 protected:
     void setHexColor(int hexColor);
 public:
@@ -146,6 +175,7 @@ protected:
     bool facingLeft = false;
     double speed = 3;
     std::string custumTexture = "";
+    int hp = 3;
 public:
     explicit DoodlerLogic(World& world);
     void moveLeft();
@@ -159,6 +189,10 @@ public:
     bool isFacingLeft() override;
     bool checkPlatformCollisions(std::vector<std::shared_ptr<PlatformLogic>> objects);
     bool checkBonusCollisions(std::vector<std::shared_ptr<BonusesLogic>> objects);
+    bool checkEnemyCollisions(std::vector<std::shared_ptr<EnemyLogic>> objects);
+
+    int getHp();
+    void addHp(int hp = 1);
     constexpr static const double jumpHeight = 200;
     constexpr static const double doodleHeight = 109;
     constexpr static const double doodleWidth = 55;

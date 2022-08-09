@@ -4,7 +4,7 @@
 
 #include "Entity.h"
 
-Entity::Entity(std::shared_ptr<EntityLogic> logicEntity, sf::RenderWindow &window): EntityObserver(logicEntity), window(window) {
+Entity::Entity(std::shared_ptr<EntityLogic> logicEntity1, sf::RenderWindow &window): EntityObserver(logicEntity1), window(window) {
 
 }
 
@@ -18,8 +18,9 @@ TextureEntity::TextureEntity(std::shared_ptr<EntityLogic> logicEntity, sf::Rende
     entityGrahic.setTexture(texture);
     entityGrahic.setScale(1,1);
     //playerGrahic->setColor(sf::Color::Red);
-
-    std::pair<float, float> newLocation = this->logicEntity->getWorld().getCamera().coordinateToPixel(this->logicEntity->getLocation(), this->logicEntity);
+    std::cout << "test0" << logicEntity->getLocation().first << logicEntity->getLocation().second << std::endl;
+    std::pair<float, float> newLocation = logicEntity->getWorld().getCamera().coordinateToPixel(logicEntity->getLocation(), logicEntity);
+    std::cout << "test1" << std::endl;
     entityGrahic.setPosition(newLocation.first, newLocation.second);
 }
 void TextureEntity::update() {
@@ -78,7 +79,7 @@ void Platform::draw() {
     this->window.draw(*this->entityGrahic);
 }
 
-Spring::Spring(std::shared_ptr<SpringLogic> logicSpring, sf::RenderWindow &window):  TextureEntity(logicSpring, window, "./src/textures/spring.png") {
+Spring::Spring(std::shared_ptr<SpringLogic> logicSpring, sf::RenderWindow &window): TextureEntity(logicSpring, window, "./src/textures/spring.png") {
     std::cout << "spring created" << std::endl;
 }
 
@@ -112,7 +113,11 @@ void BGTile::draw() {
     }
 }
 
-ScoreLabel::ScoreLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow &window): Entity(logicEntity, window) {
+Enemy0::Enemy0(std::shared_ptr<Enemy0Logic> enemyLogic, sf::RenderWindow &window): TextureEntity(enemyLogic, window, "./src/textures/monster0.png") {
+    std::cout << "create monster" << std::endl;
+}
+
+Label::Label(std::shared_ptr<Score> logicEntity, sf::RenderWindow &window): Entity(logicEntity, window) {
     this->text.setFillColor(sf::Color(0,0,0));
     this->text.setPosition(10, 0);
 
@@ -123,10 +128,15 @@ ScoreLabel::ScoreLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow &win
     this->text.setFont(font);
 }
 
+void Label::draw() {
+    window.draw(text);
+    std::cout << "print text" << std::endl;
+}
+
+ScoreLabel::ScoreLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow &window): Label(logicEntity, window) {
+}
+
 void ScoreLabel::update() {
     this->text.setString("Score:" + std::to_string(this->logicEntity->getCurrentScore()));
     this->draw();
-}
-void ScoreLabel::draw() {
-    window.draw(text);
 }

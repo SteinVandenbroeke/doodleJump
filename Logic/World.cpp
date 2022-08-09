@@ -22,6 +22,7 @@ bool World::update() {
     doodler->update();
     doodler->checkBonusCollisions(this->bonussen);
     doodler->checkPlatformCollisions(this->platforms);
+    doodler->checkEnemyCollisions(this->enemies);
     this->score->update();
 
     //Check if world moves up
@@ -90,7 +91,6 @@ const std::vector<PlatformLogic *>& World::getPlatforms() const {
 void World::updatePlatforms() {
     for(auto it = platforms.begin(); it != platforms.end(); ++it){
         (*it)->update();
-        (*it)->updateObservers();
     }
 }
 
@@ -129,6 +129,7 @@ std::shared_ptr<Stopwatch> World::getStopwatch() {
 std::shared_ptr<BonusesLogic> World::createSpring(PlatformLogic &platform) {
     std::shared_ptr<BonusesLogic> spring = this->factory.createSpring(platform.getXLocation(), platform.getYLocation(), *this);
     this->bonussen.push_back(spring);
+    std::cout << "spring created" << std::endl;
     return spring;
 }
 
@@ -144,4 +145,10 @@ const Random &World::getRandom() const {
 
 DoodlerLogic &World::getDoodle() {
     return *this->doodler;
+}
+
+std::shared_ptr<Enemy0Logic> World::createEnemy0(PlatformLogic &platform) {
+    std::shared_ptr<Enemy0Logic> enemy = this->factory.createEnemy(platform.getXLocation(), platform.getYLocation(), *this);
+    this->enemies.push_back(enemy);
+    return enemy;
 }

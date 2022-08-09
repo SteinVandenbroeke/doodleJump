@@ -80,3 +80,8 @@ std::shared_ptr<Score> ConcreteFactory::createScore(World &world) {
     new ScoreLabel(score, window);
     return score;
 }
+std::shared_ptr<Enemy0Logic> ConcreteFactory::createEnemy(double locationX, double locationY, World &world) {
+    std::shared_ptr<Enemy0Logic> enemie0 = std::make_shared<Enemy0Logic>(locationX,locationY,world);
+    new Enemy0(enemie0, window);
+    return enemie0;
+}

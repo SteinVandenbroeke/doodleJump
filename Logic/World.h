@@ -29,6 +29,7 @@ public:
     //const std::vector<PlatformLogic*>& getPlatforms() const;
     std::shared_ptr<BonusesLogic> createSpring(PlatformLogic& platform);
     std::shared_ptr<BonusesLogic> createJetPack(PlatformLogic& platform);
+    virtual std::shared_ptr<Enemy0Logic> createEnemy0(PlatformLogic& platform);
     //DoodlerLogic* getDoodleLogic() const;
 private:
     std::shared_ptr<Score> score;
@@ -36,6 +37,7 @@ private:
     std::shared_ptr<BGTileLogic> bgTile;
     std::vector<std::shared_ptr<PlatformLogic>> platforms;
     std::vector<std::shared_ptr<BonusesLogic>> bonussen;
+    std::vector<std::shared_ptr<EnemyLogic>> enemies;
     Camera camera;
     Random* random;
     IWindow& window;
