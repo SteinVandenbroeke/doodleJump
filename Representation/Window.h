@@ -20,7 +20,7 @@ public:
     void clear() override;
     void display() override;
     void close() override;
-    char keyBoardPress() override;
+    void keyBoardPress(char* keyPresses) override;
     int getWindowHeight() override;
     int getWindowsWidth() override;
 };

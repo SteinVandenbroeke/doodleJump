@@ -8,13 +8,23 @@
 
 #include "EntityLogic.h"
 #include "Subject.h"
+#include <fstream>
 class World;
 
 class Score: public EntityLogic{
+private:
+    int extraScore = 0;
+    int highScore = -1;
+    void loadHighScore();
+    void safeHighScore();
 public:
     Score(World &world);
+    ~Score();
     void update() override;
     int getCurrentScore() override;
+    int getCurrentHp() override;
+    void addScorePoints(int amount);
+    int getHighScore() override;
 };
 
 

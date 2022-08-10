@@ -25,11 +25,16 @@ public:
     std::shared_ptr<TemporaryPlatformLogic> createTemporaryPlatform(double locationX, double locationY,World& world) override;
     std::shared_ptr<VerticalRandomPlatformLogic> createVerticalRandomPlatform(double locationX, double locationY,World& world) override;
     std::shared_ptr<HorizontalRandomPlatformLogic> createHorizontalRandomPlatform(double locationX, double locationY,World& world) override;
-    std::shared_ptr<Enemy0Logic> createEnemy(double locationX, double locationY, World& world) override;
+    std::shared_ptr<Enemy0Logic> createEnemy0(PlatformLogic& platform, World& world) override;
+    std::shared_ptr<Enemy1Logic> createEnemy1(PlatformLogic& platform, World& world) override;
     std::shared_ptr<SpringLogic> createSpring(double locationX, double locationY,World& world) override;
     std::shared_ptr<JetpackLogic> createJetpack(double locationX, double locationY,World& world) override;
+    std::shared_ptr<SpikeLogic> createSpike(double locationX, double locationY,World& world) override;
+    std::shared_ptr<AddHpLogic> createAddHp(double locationX, double locationY,World& world) override;
     std::shared_ptr<BGTileLogic> createBGTile(World& world) override;
+    std::shared_ptr<StartScreenLogic> createStartScreen(World& world) override;
     std::shared_ptr<Score> createScore(World& world) override;
+    std::shared_ptr<BulletLogic> createBullet(double locationX, double locationY, World& world, bool reverseBullet = false) override;
 };
 
 #endif //DOODLE_JUMP_CONCRETEFACTORY_H

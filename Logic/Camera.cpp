@@ -9,9 +9,9 @@ Camera::Camera(int screenWidth, int screenHeight): screenHeight(screenHeight), s
 
 }
 
-std::pair<float, float> Camera::coordinateToPixel(const std::pair<float,float>& coordinate, const std::shared_ptr<EntityLogic> entity) const {
+std::pair<float, float> Camera::coordinateToPixel(const std::pair<float,float>& coordinate, const EntityLogic& entity) const {
     return std::pair<float, float>(coordinate.first,
-            (this->screenHeight - ((coordinate.second + entity->getYSize()) - this->height)));
+            (this->screenHeight - ((coordinate.second + entity.getYSize()) - this->height)));
 }
 
 float Camera::yCoordinateToPixel(float y) const {

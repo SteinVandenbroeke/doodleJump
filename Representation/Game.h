@@ -4,11 +4,14 @@
 
 #ifndef TESTREPO_GAME_H
 #define TESTREPO_GAME_H
+#include "ConcreteFactory.h"
+#include "Window.h"
 #include <SFML/Graphics.hpp>
 
 class Game {
 public:
     Game(int width, int height);
+    void gameLoop(Window &window, ConcreteFactory &factory);
 };
 
 

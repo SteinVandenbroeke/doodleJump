@@ -17,6 +17,7 @@ enum EntityType { PlatformLogicE, DoodleLogicE, ItemLogicE, UndefinedLogicE, Spr
 
 class World;
 class EntityObserver;
+class PlatformLogic;
 class EntityLogic: public Subject{
 protected:
     bool collisionDooldle = false;
@@ -39,9 +40,13 @@ public:
     virtual std::string getCustumTexture(){
         return "";
     }
+    virtual bool darkTexture(){
+        return false;
+    }
     virtual std::vector<int> getHorizontalLines(){return std::vector<int>();}
     virtual int getCurrentScore(){return 0;}
-
+    virtual int getCurrentHp() {return 0;}
+    virtual int getHighScore() {return 0;}
 
 protected:
     std::pair<float, float> locationXY;
@@ -60,25 +65,29 @@ public:
 class EnemyLogic: public PlatformItem{
 protected:
     bool previousCollisionDooldle = false;
+    PlatformLogic& parentPlatform;
+    double flashSec = 0;
+    int hp;
 public:
-    EnemyLogic(double locationX, double locationY, World&);
+    EnemyLogic(PlatformLogic& platform, World&);
     void update() override;
+    virtual bool hitByBullet();
+    void makeDark(double timeInSec);
+    bool darkTexture() override;
+    int getBulletLocationX();
     //TODO
 };
 
 class Enemy0Logic: public EnemyLogic{
 public:
-    Enemy0Logic(double locationX, double locationY, World&);
-    void update() override;
+    Enemy0Logic(PlatformLogic& platform, World&);
 };
 
-/*
-class Enemie1Logic: public EnemieLogic{
+class Enemy1Logic: public EnemyLogic{
 public:
-    Enemie1Logic(double locationX, double locationY, World&);
-    void update() override;
+    Enemy1Logic(PlatformLogic& platform, World& world);
+    bool hitByBullet() override;
 };
-*/
 
 class BonusesLogic: public PlatformItem{
 public:
@@ -99,6 +108,31 @@ public:
     void update() override;
 };
 
+class SpikeLogic: public BonusesLogic{
+public:
+    SpikeLogic(double locationX, double locationY, World&);
+    void update() override;
+};
+
+class AddHpLogic: public BonusesLogic{
+    std::string custumTexture = "";
+    int hpPoints = 1;
+public:
+    AddHpLogic(double locationX, double locationY, World&);
+    void update() override;
+    std::string getCustumTexture() override;
+};
+
+class BulletLogic: public EntityLogic{
+private:
+    void updateLocation();
+public:
+    bool reverseBullet = false;
+    BulletLogic(double locationX, double locationY, World&, bool reverseBullet = false);
+    bool checkEnemyCollisions(std::vector<std::shared_ptr<EnemyLogic>>& enemies);
+    void update() override;
+};
+
 class PlatformLogic: public EntityLogic{
 private:
     int hexColor = 0x229900ff;
@@ -108,12 +142,14 @@ protected:
 public:
    // PlatformLogic(double locationX, double locationY, Camera* camera);
     PlatformLogic(double locationX, double locationY, World& world);
+    ~PlatformLogic();
     constexpr static const double platformHeight = 20;
     constexpr static const double platformWidth = 100;
     virtual double getMaxYLocation() const;
     virtual double getMinYLocation() const;
     virtual int getColor() const;
     void update() override;
+    void removeItem();
 };
 
 class MovePlatformLogic: public PlatformLogic{
@@ -168,6 +204,12 @@ public:
     std::vector<int> getHorizontalLines() override;
 };
 
+class StartScreenLogic: public EntityLogic{
+public:
+    StartScreenLogic(World& world);
+    void update() override;
+};
+
 class DoodlerLogic: public EntityLogic{
 protected:
     float upValue = jumpHeight;
@@ -176,6 +218,8 @@ protected:
     double speed = 3;
     std::string custumTexture = "";
     int hp = 3;
+    double flashSec = 0;
+    void makeDark(double timeInSec);
 public:
     explicit DoodlerLogic(World& world);
     void moveLeft();
@@ -185,20 +229,26 @@ public:
     void updateJumpHight(double jumpHight);
     void setCustumTexture(std::string texturePath);
     std::string getCustumTexture() override;
+    bool darkTexture() override;
     void resetCustumTexture();
     bool isFacingLeft() override;
     bool checkPlatformCollisions(std::vector<std::shared_ptr<PlatformLogic>> objects);
     bool checkBonusCollisions(std::vector<std::shared_ptr<BonusesLogic>> objects);
     bool checkEnemyCollisions(std::vector<std::shared_ptr<EnemyLogic>> objects);
 
-    int getHp();
     void addHp(int hp = 1);
+    void hitByEnemy();
+
+    int getBulletLocationX();
+    int getBulletLocationY();
+
+    int getHp();
     constexpr static const double jumpHeight = 200;
     constexpr static const double doodleHeight = 109;
     constexpr static const double doodleWidth = 55;
 };
 
-bool collisionsDetection(EntityLogic& entity1, std::shared_ptr<EntityLogic> entity2);
+bool collisionsDetection(EntityLogic& entity1, EntityLogic& entity2);
 
 
 

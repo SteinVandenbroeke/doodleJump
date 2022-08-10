@@ -10,13 +10,18 @@ World::World(IWindow& window, AbstractFactory& factory): window(window), factory
     this->doodler = this->factory.createDoodler(*this);
     this->bgTile = this->factory.createBGTile(*this);
     this->score = this->factory.createScore(*this);
+    this->startscreen = this->factory.createStartScreen(*this);
     std::cout << "create doodle ok" << std::endl;
-    platforms.push_back(this->factory.createPlatform(0,0, *this));
-    generatePlatforms();
+    platforms.push_back(this->factory.createPlatform(10,10, *this));
 }
 
 bool World::update() {
     this->stopwatch->newFrame();
+    double frameTime = 1/this->stopwatch->getFrameLoadTime();
+    if(frameTime < 40 || frameTime > 65){
+        std::cout << (1/this->stopwatch->getFrameLoadTime()) << std::endl;
+    }
+    this->updateBullets();
     this->bgTile->update();
     this->updatePlatforms();
     doodler->update();
@@ -25,13 +30,35 @@ bool World::update() {
     doodler->checkEnemyCollisions(this->enemies);
     this->score->update();
 
+    char pressed[3] = {-1, -1, -1};
+    window.keyBoardPress(pressed);
+
     //Check if world moves up
-    if(window.keyBoardPress() == 'Q'){
+    if(pressed[0] == 'Q'){
         doodler->moveLeft();
     }
-    if(window.keyBoardPress() == 'D'){
+    if(pressed[1] == 'D'){
         doodler->moveRight();
     }
+    if(pressed[2] == 'Z'){
+        if(!continuShootBlock){
+            this->createBullet(*doodler);
+        }
+        continuShootBlock = true;
+    }
+    else {
+        continuShootBlock = false;
+    }
+
+    if(!started && (pressed[0] == 'Q' || pressed[1] == 'D' || pressed[2] == 'Z')){
+        generatePlatforms();
+        started = true;
+        return true;
+    }
+    else if(!started){
+        this->startscreen->update();
+    }
+
     if(doodler->getYLocation() >= camera.getHeight() + camera.getScreenHeight() / 2){
         double heightDifference = abs((camera.getHeight() + camera.getScreenHeight()/2) - doodler->getYLocation());
         camera.addToHeight(heightDifference);
@@ -39,6 +66,7 @@ bool World::update() {
         this->removePlatforms();
     }
     else if(doodler->getYLocation() <= camera.getHeight()){
+        started = false;
         return false;
     }
     return true;
@@ -48,9 +76,15 @@ void World::generatePlatforms() {
     std::shared_ptr<PlatformLogic> previusPlatform = platforms.back();
     while(previusPlatform->getYLocation() < camera.getHeight() + this->camera.getScreenHeight()){
         double platformXLocation = random->randomNumber(0,this->camera.getScreenWidth() - (PlatformLogic::platformWidth/2));
-        double maxYPlatform = (DoodlerLogic::jumpHeight/2) - (PlatformLogic::platformHeight * 2);
-        double platformYLocation = random->randomNumber(previusPlatform->getYLocation() + PlatformLogic::platformHeight, maxYPlatform);
+        double maxYPlatform = std::max(previusPlatform->getMaxYLocation(), (double)(previusPlatform->getYLocation())) + (DoodlerLogic::jumpHeight/1.1) - (PlatformLogic::platformHeight * 2);
 
+
+        int minHeight = previusPlatform->getYLocation() + PlatformLogic::platformHeight + (this->getScore().getCurrentScore() / 500);
+        if(minHeight >= maxYPlatform){
+            minHeight = maxYPlatform - 1;
+        }
+
+        double platformYLocation = random->randomNumber( minHeight, maxYPlatform);
         std::shared_ptr<PlatformLogic> platform = getRandomPlatform(platformXLocation, platformYLocation);
         platforms.push_back(platform);
         previusPlatform = platform;
@@ -77,33 +111,49 @@ void World::removePlatforms() {
     }
 }
 
-/*
-DoodlerLogic* World::getDoodleLogic() const {
-    return this->doodler;
-}
-*/
-
-/*
-const std::vector<PlatformLogic *>& World::getPlatforms() const {
-    return this->platforms;
-}*/
-
 void World::updatePlatforms() {
     for(auto it = platforms.begin(); it != platforms.end(); ++it){
         (*it)->update();
     }
 }
 
+void World::updateBullets() {
+    auto it = bullets.begin();
+    while(it != bullets.end()){
+        (*it)->update();
+        if((*it)->checkEnemyCollisions(this->enemies) ||
+            (*it)->getYLocation() > this->camera.getHeight() + this->camera.getScreenHeight() ||
+            (*it)->getYLocation() < this->doodler->getYLocation()){
+            bullets.erase(it);
+        }
+        else{
+            ++it;
+        }
+    }
+
+    it = reversebullets.begin();
+    while(it != reversebullets.end()){
+        (*it)->update();
+        if((*it)->checkEnemyCollisions(this->enemies) ||
+            (*it)->getYLocation() > this->camera.getHeight() + this->camera.getScreenHeight() ||
+            (*it)->getYLocation() < this->doodler->getYLocation()){
+            reversebullets.erase(it);
+        }
+        else{
+            ++it;
+        }
+    }
+}
+
 std::shared_ptr<PlatformLogic> World::getRandomPlatform(double platformXLocation, double platformYLocation) {
-    double score = 200; //change!
+    double score = this->getScore().getCurrentScore() + 1;
     int maxChange = 1000;
     int randomNumber = std::min(random->randomNumber(0, score), maxChange);
     if(randomNumber < 100){
         return this->factory.createPlatform(platformXLocation, platformYLocation, *this);
     }
     else {
-        std::cout << "Special platform"<<std::endl;
-        int randomNumber = random->randomNumber(0, 5);//TODO
+        int randomNumber = random->randomNumber(0, 4);//TODO
         switch (randomNumber) {
             case 0:
                 return this->factory.createHorizontalPlatform(platformXLocation,platformYLocation, *this);
@@ -139,6 +189,19 @@ std::shared_ptr<BonusesLogic> World::createJetPack(PlatformLogic &platform) {
     return jetpack;
 }
 
+std::shared_ptr<BonusesLogic> World::createSpike(PlatformLogic &platform) {
+    std::shared_ptr<SpikeLogic> spike = this->factory.createSpike(platform.getXLocation(), platform.getYLocation(), *this);
+    this->bonussen.push_back(spike);
+    return spike;
+}
+
+std::shared_ptr<BonusesLogic> World::createAddHp(PlatformLogic &platform) {
+    std::shared_ptr<AddHpLogic> hpBuble = this->factory.createAddHp(platform.getXLocation(), platform.getYLocation(), *this);
+    this->bonussen.push_back(hpBuble);
+    return hpBuble;
+}
+
+
 const Random &World::getRandom() const {
     return *random;
 }
@@ -148,7 +211,25 @@ DoodlerLogic &World::getDoodle() {
 }
 
 std::shared_ptr<Enemy0Logic> World::createEnemy0(PlatformLogic &platform) {
-    std::shared_ptr<Enemy0Logic> enemy = this->factory.createEnemy(platform.getXLocation(), platform.getYLocation(), *this);
+    std::shared_ptr<Enemy0Logic> enemy = this->factory.createEnemy0(platform, *this);
     this->enemies.push_back(enemy);
     return enemy;
+}
+
+std::shared_ptr<Enemy1Logic> World::createEnemy1(PlatformLogic &platform) {
+    std::shared_ptr<Enemy1Logic> enemy = this->factory.createEnemy1(platform, *this);
+    this->enemies.push_back(enemy);
+    return enemy;
+}
+
+void World::createBullet(DoodlerLogic &doodlerLogic) {
+    this->bullets.push_back(this->factory.createBullet(doodlerLogic.getBulletLocationX(), doodlerLogic.getBulletLocationY(), *this, false));
+}
+
+void World::createBullet(EnemyLogic &enemyLogic) {
+    this->reversebullets.push_back(this->factory.createBullet(enemyLogic.getBulletLocationX(), enemyLogic.getYLocation(), *this, true));
+}
+
+Score &World::getScore() {
+    return *this->score;
 }

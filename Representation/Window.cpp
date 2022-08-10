@@ -16,16 +16,20 @@ void Window::close() {
     this->window.close();
 }
 
-char Window::keyBoardPress() {
+void Window::keyBoardPress(char* keyPresses) {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-        return 'Q';
+        keyPresses[0] = 'Q';
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        return 'D';
+        keyPresses[1] = 'D';
     }
-    return -1;
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
+        keyPresses[2] = 'Z';
+    }
 }
+
 int Window::getWindowHeight() {
     return this->height;
 }

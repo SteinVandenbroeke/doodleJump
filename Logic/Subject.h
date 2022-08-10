@@ -13,10 +13,16 @@ class Subject {
 private:
     std::list<Observer *> observerList;
 public:
+    ~Subject(){
+        for(auto it = observerList.begin(); it != observerList.end(); ++it){
+            delete (*it);
+        }
+    }
+
     void addObserver(Observer *observer) {
-        std::cout << "added to observer list" << std::endl;
         observerList.push_back(observer);
     }
+
     void removeObserver(Observer *observer) {
         observerList.remove(observer);
     }

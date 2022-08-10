@@ -15,9 +15,9 @@ public:
 
 class EntityObserver: Observer{
 protected:
-    std::shared_ptr<EntityLogic> logicEntity;
+    EntityLogic& logicEntity;
 public:
-    EntityObserver(std::shared_ptr<EntityLogic> entityLogic);
+    EntityObserver(EntityLogic& entityLogic);
 };
 
 

@@ -14,7 +14,7 @@ class Entity: public EntityObserver{
 protected:
     sf::RenderWindow& window;
 public:
-    Entity(std::shared_ptr<EntityLogic> logicEntity, sf::RenderWindow& window);
+    Entity(EntityLogic& logicEntity, sf::RenderWindow& window);
     virtual void draw() = 0;
 };
 
@@ -23,55 +23,62 @@ protected:
     sf::Sprite entityGrahic;
     sf::Texture texture;
 public:
-    TextureEntity(std::shared_ptr<EntityLogic> logicEntity, sf::RenderWindow& window, const char* texture);
+    TextureEntity(EntityLogic& logicEntity, sf::RenderWindow& window, const char* texture);
     void update() override;
     void draw() override;
 };
 
 class Doodler: public TextureEntity{
 public:
-    Doodler(std::shared_ptr<DoodlerLogic> logicEntity, sf::RenderWindow& window);
+    Doodler(DoodlerLogic& logicEntity, sf::RenderWindow& window);
     void update() override;
     void draw() override;
 };
 
 class Enemy0: public TextureEntity {
 public:
-    Enemy0(std::shared_ptr<Enemy0Logic> logicEntity, sf::RenderWindow& window);
+    Enemy0(Enemy0Logic& logicEntity, sf::RenderWindow& window);
 };
 
-/*
 class Enemy1: public TextureEntity {
 public:
-    Enemy1(std::shared_ptr<Enemy1Logic> logicEntity, sf::RenderWindow& window);
-    void update() override;
-    void draw() override;
+    Enemy1(Enemy1Logic& logicEntity, sf::RenderWindow& window);
 };
-*/
 
 class Platform: public Entity{
     sf::RectangleShape* entityGrahic;
 public:
-    Platform(std::shared_ptr<PlatformLogic> logicEntity, sf::RenderWindow& window);//const .. const TODO
+    Platform(PlatformLogic& logicEntity, sf::RenderWindow& window);//const .. const TODO
     void update() override;
     void draw() override;
 };
 
 class Spring: public TextureEntity{
 public:
-    Spring(std::shared_ptr<SpringLogic> logicSpring, sf::RenderWindow& window);
+    Spring(SpringLogic& logicSpring, sf::RenderWindow& window);
 };
 
 class Jetpack: public TextureEntity{
 public:
-    Jetpack(std::shared_ptr<JetpackLogic> logicJetpack, sf::RenderWindow& window);
+    Jetpack(JetpackLogic& logicJetpack, sf::RenderWindow& window);
+};
+
+class Spike: public TextureEntity{
+public:
+    Spike(SpikeLogic& logicJetpack, sf::RenderWindow& window);
+};
+
+class AddHp: public TextureEntity{
+public:
+    AddHp(AddHpLogic& logicJetpack, sf::RenderWindow& window);
+    void update() override;
 };
 
 class BGTile: public Entity{
 protected:
     std::vector<std::unique_ptr<sf::RectangleShape>> entityGrahic;
 public:
-    BGTile(std::shared_ptr<BGTileLogic> logicEntity, sf::RenderWindow& window);
+    BGTile(BGTileLogic& logicEntity, sf::RenderWindow& window);
     void update() override;
     void draw() override;
 };
@@ -84,20 +91,33 @@ protected:
     sf::Text text;
 
 public:
-    Label(std::shared_ptr<Score> logicEntity, sf::RenderWindow& window);
+    Label(EntityLogic& logicEntity, sf::RenderWindow& window, int locationX, int locationY);
     void draw() override;
 };
 
 class ScoreLabel: public Label{
 public:
-    ScoreLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow& window);
+    ScoreLabel(Score& logicEntity, sf::RenderWindow& window);
     void update() override;
 };
 
-class HpLabel: public Label{
+class Bullet: public Entity{
+    sf::CircleShape* entityGrahic;
 public:
-    HpLabel(std::shared_ptr<Score> logicEntity, sf::RenderWindow& window);
+    Bullet(BulletLogic& logicEntity, sf::RenderWindow& window);
     void update() override;
+    void draw() override;
+};
+
+class StartScreen: public Entity{
+    sf::Font font;
+    sf::Text title;
+    sf::Text hightScore;
+    sf::Text instructions;
+public:
+    StartScreen(StartScreenLogic& logicEntity, sf::RenderWindow& window);
+    void update() override;
+    void draw() override;
 };
 
 #endif //TESTREPO_ENTITY_H

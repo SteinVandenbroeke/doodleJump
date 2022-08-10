@@ -70,14 +70,14 @@ void DoodlerLogic::update() {
         upValue -= 1 * world.getStopwatch()->getMovementMultiplier();
         up = false;
     }
-
+    this->flashSec -= world.getStopwatch()->getFrameLoadTime();
     this->locationXY.second += ((upValue*1.5)/(this->jumpHeight)) * world.getStopwatch()->getMovementMultiplier();
     updateObservers();
 }
 
 DoodlerLogic::DoodlerLogic(World& world): EntityLogic(world, DoodleLogicE) {
     this->locationXY.second = 100;
-    this->locationXY.first = 0;
+    this->locationXY.first = 20;
 
     this->sizeXY.second = doodleHeight;
     this->sizeXY.first = doodleWidth;
@@ -97,10 +97,9 @@ bool DoodlerLogic::checkPlatformCollisions(std::vector<std::shared_ptr<PlatformL
     }
 
     for(auto it = objects.begin(); it != objects.end(); it++){
-        if(collisionsDetection(*this, *it)){
+        if(collisionsDetection(*this, *(*it))){
             (*it)->setCollosionDoodle();
             this->locationXY.second = (*it)->getYLocation() + (*it)->getYSize();
-            std::cout << "jump reset" << std::endl;
             this->resetJump();
             return true;
         }
@@ -114,7 +113,7 @@ bool DoodlerLogic::checkBonusCollisions(std::vector<std::shared_ptr<BonusesLogic
     }
 
     for(auto it = objects.begin(); it != objects.end(); it++){
-        if(collisionsDetection(*this, *it)){
+        if(collisionsDetection(*this, *(*it))){
             (*it)->setCollosionDoodle();
             return true;
         }
@@ -124,7 +123,7 @@ bool DoodlerLogic::checkBonusCollisions(std::vector<std::shared_ptr<BonusesLogic
 
 bool DoodlerLogic::checkEnemyCollisions(std::vector<std::shared_ptr<EnemyLogic>> objects) {
     for(auto it = objects.begin(); it != objects.end(); it++){
-        if(collisionsDetection(*this, *it)){
+        if(collisionsDetection(*this, *(*it))){
             (*it)->setCollosionDoodle();
             return true;
         }
@@ -153,7 +152,36 @@ int DoodlerLogic::getHp() {
 }
 
 void DoodlerLogic::addHp(int hp) {
-    hp += hp;
+    if(hp < 0 && this->hp <= 0){
+        return;
+    }
+    this->hp += hp;
+}
+
+int DoodlerLogic::getBulletLocationX() {
+    if(this->facingLeft){
+        return this->locationXY.first;
+    }
+    return this->locationXY.first + this->sizeXY.first - 14;
+}
+
+int DoodlerLogic::getBulletLocationY() {
+    return this->locationXY.second + this->sizeXY.second - 14;
+}
+bool DoodlerLogic::darkTexture() {
+    if(flashSec <= 0){
+        return false;
+    }
+    return true;
+}
+
+void DoodlerLogic::makeDark(double timeInSec) {
+    this->flashSec = timeInSec;
+}
+void DoodlerLogic::hitByEnemy() {
+    this->world.getScore().addScorePoints(-250);
+    this->addHp(-1);
+    this->makeDark(0.2);
 }
 
 PlatformLogic::PlatformLogic(double locationX, double locationY, World& world): EntityLogic(world, PlatformLogicE) {
@@ -161,14 +189,20 @@ PlatformLogic::PlatformLogic(double locationX, double locationY, World& world): 
     this->locationXY.first = locationX;//x val;
     this->sizeXY.first = platformWidth;
     this->sizeXY.second = platformHeight;
-    int i = this->world.getRandom().getInstance()->randomNumber(0,10);
+    int i = this->world.getRandom().getInstance()->randomNumber(0,50);
 
     if(i == 1)
         this->bonus = world.createSpring(*this);
     else if(i == 2)
         this->bonus = world.createJetPack(*this);
-    else if(i == 3)
+    if(i == 3)
         this->bonus = world.createEnemy0(*this);
+    else if(i == 4)
+        this->bonus = world.createEnemy1(*this);
+    else if(i == 5)
+        this->bonus = world.createSpike(*this);
+    else if(i == 6)
+        this->bonus = world.createAddHp(*this);
 }
 
 double PlatformLogic::getMaxYLocation() const {
@@ -194,27 +228,35 @@ void PlatformLogic::update() {
     }
 }
 
-bool collisionsDetection(EntityLogic& entity1, std::shared_ptr<EntityLogic> entity2) {
+void PlatformLogic::removeItem() {
+    this->bonus = nullptr;
+}
+
+PlatformLogic::~PlatformLogic() {
+    std::cout << "platform verwijderd" << std::endl;
+}
+
+bool collisionsDetection(EntityLogic& entity1, EntityLogic& entity2) {
     int entity1MinX = entity1.getXLocation();
     int entity1MaxX = entity1.getXLocation() + entity1.getXSize();
 
     int entity1MinY = entity1.getYLocation();
     int entity1MaxY = entity1.getYLocation() + entity1.getYSize();
 
-    int entity2MinX = entity2->getXLocation();
-    int entity2MaxX = entity2->getXLocation() + entity2->getXSize();
+    int entity2MinX = entity2.getXLocation();
+    int entity2MaxX = entity2.getXLocation() + entity2.getXSize();
 
-    int entity2MinY = entity2->getYLocation();
-    int entity2MaxY = entity2->getYLocation() + entity2->getYSize();
+    int entity2MinY = entity2.getYLocation();
+    int entity2MaxY = entity2.getYLocation() + entity2.getYSize();
 
     bool checkX = entity1MaxX >= entity2MinX && entity1MinX <= entity2MaxX;
     bool checkY = entity1MaxY >= entity2MinY && entity1MinY <= entity2MaxY;
 
     std::shared_ptr<Stopwatch> stopwatch = stopwatch->getInstance();
-    if(entity1.getEntityType() == DoodleLogicE && entity2->getEntityType() == PlatformLogicE){
+    if(entity1.getEntityType() == DoodleLogicE && entity2.getEntityType() == PlatformLogicE){
         checkY = abs(entity1MinY - entity2MaxY) <= stopwatch->getInstance()->getMovementMultiplier() * 1;
     }
-    else if(entity2->getEntityType() == DoodleLogicE && entity1.getEntityType() == PlatformLogicE){
+    else if(entity2.getEntityType() == DoodleLogicE && entity1.getEntityType() == PlatformLogicE){
         checkY = abs(entity1MaxY - entity2MinY) <= stopwatch->getInstance()->getMovementMultiplier() * 1;
     }
     if(checkY && checkX){
@@ -237,6 +279,7 @@ MovePlatformLogic::MovePlatformLogic(double locationX, double locationY, World& 
     }
     this->maxYLocation = maxYLocation;
     this->minYLocation = minYLocation;
+    std::cout << "new move platform: "<< minYLocation  << " " << locationY << std::endl;
 }
 
 void MovePlatformLogic::update() {
@@ -259,15 +302,14 @@ double MovePlatformLogic::getMinYLocation() const {
 
 HorizontalPlatformLogic::HorizontalPlatformLogic(double locationX, double locationY, World& world) : MovePlatformLogic(
         locationX, locationY, world,200,
-        (([](double t){ if(t <= 100){return 1; }else {return -1; }})),
+        (([](double t){ if(t < 100){return 1; }else {return -1; }})),
         ([](double t){ return 0; })) {
     setHexColor(0x009799ff);
 }
 
-VerticalPlatformLogic::VerticalPlatformLogic(double locationX, double locationY, World& world) : MovePlatformLogic(
-        locationX, locationY, world,200,
+VerticalPlatformLogic::VerticalPlatformLogic(double locationX, double locationY, World& world) : MovePlatformLogic(locationX, locationY - (3* PlatformLogic::platformHeight), world,200,
         ([](double t){ return 0; }),
-        ([](double t){ if(t <= 100){return 1; }else {return -1; }})) {
+        ([](double t){ if(t < 100){return 1; }else {return -1; }})) {
     setHexColor(0xffee00ff);
 }
 
@@ -342,6 +384,39 @@ void JetpackLogic::update() {
     }
 }
 
+SpikeLogic::SpikeLogic(double locationX, double locationY, World& world): BonusesLogic(locationX, locationY, world) {
+    this->sizeXY.first = 40;
+    this->sizeXY.second = 23;
+}
+
+void SpikeLogic::update() {
+    if(this->collisionDooldle && this->getWorld().getDoodle().getYLocation() > this->getYLocation()){
+        this->getWorld().getDoodle().hitByEnemy();
+        this->getWorld().getDoodle().resetJump();
+        std::cout << "spike collision" << std::endl;
+        this->collisionDooldle = false;
+    }
+}
+
+AddHpLogic::AddHpLogic(double locationX, double locationY, World& world) : BonusesLogic(locationX, locationY, world) {
+    this->sizeXY.first = 52;
+    this->sizeXY.second = 52;
+}
+
+void AddHpLogic::update() {
+    if(this->collisionDooldle && this->getWorld().getDoodle().getYLocation() > this->getYLocation() && this->hpPoints > 0){
+        this->getWorld().getDoodle().addHp();
+        this->getWorld().getDoodle().resetJump();
+        std::cout << "Bonus point" << std::endl;
+        this->collisionDooldle = false;
+        this->custumTexture = "./src/textures/hpNeutral.png";
+        this->hpPoints--;
+    }
+}
+std::string AddHpLogic::getCustumTexture() {
+    return this->custumTexture;
+}
+
 BGTileLogic::BGTileLogic(World &world1) : EntityLogic(world1) {
     for(int i = 0; i < this->getWorld().getCamera().getScreenHeight(); i += 20){
         this->horizontalLines.push_back(i);
@@ -360,23 +435,6 @@ std::vector<int> BGTileLogic::getHorizontalLines() {
     return this->horizontalLines;
 }
 
-
-void Enemy0Logic::update() {
-    if(this->collisionDooldle && !previousCollisionDooldle){
-        this->getWorld().getDoodle().addHp(-1);
-        std::cout << "Enemy hit" << std::endl;
-        this->previousCollisionDooldle = this->collisionDooldle;
-        this->collisionDooldle = false;
-    }
-    else if(this->collisionDooldle){
-        this->collisionDooldle = false;
-    }
-    else if(!this->collisionDooldle){
-        this->previousCollisionDooldle = false;
-    }
-    EnemyLogic::update();
-}
-
 PlatformItem::PlatformItem(double locationX, double locationY, World& world): EntityLogic(world, PlatmorLogicE) {
     this->locationXY.second = locationY + PlatformLogic::platformHeight;//y val
     this->locationXY.first = locationX;//x val;
@@ -387,14 +445,112 @@ void PlatformItem::updateLocation(double locationX, double locationY) {
     this->locationXY.second = locationY + PlatformLogic::platformHeight;
 }
 
-EnemyLogic::EnemyLogic(double locationX, double locationY, World &world): PlatformItem(locationX, locationY, world) {
+EnemyLogic::EnemyLogic(PlatformLogic& platform, World &world): parentPlatform(platform), PlatformItem(platform.getXLocation(),platform.getYLocation(), world) {
 }
 
 void EnemyLogic::update() {
+    if(this->collisionDooldle && !previousCollisionDooldle){
+        this->getWorld().getDoodle().hitByEnemy();
+        this->previousCollisionDooldle = this->collisionDooldle;
+        this->collisionDooldle = false;
+    }
+    else if(this->collisionDooldle){
+        this->collisionDooldle = false;
+    }
+    else if(!this->collisionDooldle){
+        this->previousCollisionDooldle = false;
+    }
+    this->flashSec -= world.getStopwatch()->getFrameLoadTime();
     this->updateObservers();
 }
 
-Enemy0Logic::Enemy0Logic(double locationX, double locationY, World& world): EnemyLogic(locationX,locationY,world) {
+bool EnemyLogic::hitByBullet() {
+    this->makeDark(0.2);
+    this->world.getScore().addScorePoints(250);
+    if(this->hp == 0){
+        parentPlatform.removeItem();
+        return true;
+    }
+    else{
+        this->hp -= 1;
+        this->world.createBullet(*this);
+    }
+    return false;
+}
+
+void EnemyLogic::makeDark(double timeInSec) {
+    this->flashSec = timeInSec;
+}
+
+bool EnemyLogic::darkTexture() {
+    if(flashSec <= 0){
+        return false;
+    }
+    return true;
+}
+int EnemyLogic::getBulletLocationX() {
+    return this->getXLocation() + (this->getYSize()/2);
+}
+
+Enemy0Logic::Enemy0Logic(PlatformLogic& platform, World& world): EnemyLogic(platform,world) {
     this->sizeXY.first = 151;
     this->sizeXY.second = 89;
+    this->hp = 0;
+}
+
+Enemy1Logic::Enemy1Logic(PlatformLogic& platform, World& world) : EnemyLogic(platform, world) {
+    this->sizeXY.first = 166;
+    this->sizeXY.second = 104;
+    this->hp = 2;
+}
+
+bool Enemy1Logic::hitByBullet() {
+    return EnemyLogic::hitByBullet();
+}
+
+BulletLogic::BulletLogic(double locationX, double locationY, World& world, bool reverseBullet): EntityLogic(world) {
+    this->locationXY.first = locationX;
+    this->locationXY.second = locationY;
+    this->sizeXY.first = 14;
+    this->reverseBullet = reverseBullet;
+}
+
+void BulletLogic::update() {
+    this->updateLocation();
+    this->updateObservers();
+}
+
+void BulletLogic::updateLocation() {
+    if(this->reverseBullet){
+        this->locationXY.second -= 1 * world.getStopwatch()->getMovementMultiplier();
+    }
+    else{
+        this->locationXY.second += 6 * world.getStopwatch()->getMovementMultiplier();
+    }
+}
+
+bool BulletLogic::checkEnemyCollisions(std::vector<std::shared_ptr<EnemyLogic>>& enemies) {
+    if(reverseBullet){
+        if(collisionsDetection(*this, this->world.getDoodle())){
+            this->world.getDoodle().hitByEnemy();
+            return true;
+        }
+        return  false;
+    }
+    for(auto it = enemies.begin(); it != enemies.end(); it++){
+        if(collisionsDetection(*this, *(*it))){
+            if((*it)->hitByBullet()){
+                enemies.erase(it);
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+StartScreenLogic::StartScreenLogic(World &world) : EntityLogic(world) {
+    std::cout << "startscreen" << std::endl;
+}
+void StartScreenLogic::update() {
+    this->updateObservers();
 }
