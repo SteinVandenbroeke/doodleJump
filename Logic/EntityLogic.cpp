@@ -220,20 +220,16 @@ void PlatformLogic::setHexColor(int hexColor) {
     this->hexColor = hexColor;
 }
 void PlatformLogic::update() {
-    this->updateObservers();
     if(this->bonus != nullptr){
         this->bonus->updateLocation(this->locationXY.first, this->locationXY.second);
         this->bonus->update();
         this->bonus->updateObservers();
     }
+    this->updateObservers();
 }
 
 void PlatformLogic::removeItem() {
     this->bonus = nullptr;
-}
-
-PlatformLogic::~PlatformLogic() {
-    std::cout << "platform verwijderd" << std::endl;
 }
 
 bool collisionsDetection(EntityLogic& entity1, EntityLogic& entity2) {
@@ -364,7 +360,6 @@ SpringLogic::SpringLogic(double locationX, double locationY, World& world): Bonu
 
 void SpringLogic::update() {
     if(this->collisionDooldle){
-        std::cout << "jump high!!!" << std::endl;
         this->getWorld().getDoodle().updateJumpHight(400);
         this->collisionDooldle = false;
     }
@@ -393,7 +388,6 @@ void SpikeLogic::update() {
     if(this->collisionDooldle && this->getWorld().getDoodle().getYLocation() > this->getYLocation()){
         this->getWorld().getDoodle().hitByEnemy();
         this->getWorld().getDoodle().resetJump();
-        std::cout << "spike collision" << std::endl;
         this->collisionDooldle = false;
     }
 }
@@ -407,7 +401,6 @@ void AddHpLogic::update() {
     if(this->collisionDooldle && this->getWorld().getDoodle().getYLocation() > this->getYLocation() && this->hpPoints > 0){
         this->getWorld().getDoodle().addHp();
         this->getWorld().getDoodle().resetJump();
-        std::cout << "Bonus point" << std::endl;
         this->collisionDooldle = false;
         this->custumTexture = "./src/textures/hpNeutral.png";
         this->hpPoints--;
@@ -504,10 +497,6 @@ Enemy1Logic::Enemy1Logic(PlatformLogic& platform, World& world) : EnemyLogic(pla
     this->hp = 2;
 }
 
-bool Enemy1Logic::hitByBullet() {
-    return EnemyLogic::hitByBullet();
-}
-
 BulletLogic::BulletLogic(double locationX, double locationY, World& world, bool reverseBullet): EntityLogic(world) {
     this->locationXY.first = locationX;
     this->locationXY.second = locationY;
@@ -549,7 +538,6 @@ bool BulletLogic::checkEnemyCollisions(std::vector<std::shared_ptr<EnemyLogic>>&
 }
 
 StartScreenLogic::StartScreenLogic(World &world) : EntityLogic(world) {
-    std::cout << "startscreen" << std::endl;
 }
 void StartScreenLogic::update() {
     this->updateObservers();

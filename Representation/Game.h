@@ -10,8 +10,12 @@
 
 class Game {
 public:
+    /***
+     * Create a new game with the width and height of the window
+     * @param width
+     * @param height
+     */
     Game(int width, int height);
-    void gameLoop(Window &window, ConcreteFactory &factory);
 };
 
 

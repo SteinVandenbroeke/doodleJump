@@ -3,6 +3,7 @@
 //
 
 #include "Window.h"
+#include <SFML/Window/Event.hpp>
 
 Window::Window(int width, int height, sf::RenderWindow& window): width(width), height(height), window(window){}
 
@@ -12,8 +13,12 @@ void Window::clear() {
 void Window::display() {
     this->window.display();
 }
-void Window::close() {
-    this->window.close();
+
+void Window::checkForClose() {
+    sf::Event event;
+    window.pollEvent(event);
+    if (event.type == sf::Event::Closed)
+        this->window.close();
 }
 
 void Window::keyBoardPress(char* keyPresses) {
@@ -35,4 +40,7 @@ int Window::getWindowHeight() {
 }
 int Window::getWindowsWidth() {
     return this->width;
+}
+bool Window::isOpen() {
+    return this->window.isOpen();
 }

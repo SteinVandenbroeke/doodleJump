@@ -7,11 +7,11 @@
 #include "Score.h"
 #include "World.h"
 
-
+/***
+ * AbstractFactory for creating logic entities liked to a representative entity
+ */
 class AbstractFactory {
 public:
-    //AbstractFactory(Camera* camera);
-
     virtual std::shared_ptr<DoodlerLogic> createDoodler(World& world) = 0;
     virtual std::shared_ptr<PlatformLogic> createPlatform(double locationX, double locationY,World& world) = 0;
     virtual std::shared_ptr<HorizontalPlatformLogic> createHorizontalPlatform(double locationX, double locationY,World& world) = 0;

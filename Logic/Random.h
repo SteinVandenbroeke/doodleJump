@@ -8,6 +8,9 @@
 #include <cstdlib>
 #include <memory>
 
+/***
+ * singleton class for a random class for generating numbers between a min and max
+ */
 class Random {
     static std::shared_ptr<Random> instance;
     Random(){
@@ -24,6 +27,12 @@ public:
         return instance;
     }
 
+    /***
+     * generates a number between min and max (min and max included)
+     * @param min
+     * @param max
+     * @return
+     */
     int randomNumber(int min, int max){
         return rand()%(max-min + 1) + min;
     }

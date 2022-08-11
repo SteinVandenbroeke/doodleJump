@@ -19,18 +19,8 @@ Game::Game(int width, int height) {
     renderWindow.setFramerateLimit(60);
     Window window(width, height, renderWindow);
     ConcreteFactory factory(renderWindow);
-    while(true){
-        gameLoop(window,factory);
-    }
-}
-
-void Game::gameLoop(Window &window, ConcreteFactory &factory) {
-    World world(window, factory);
-    bool playing = true;
-    while (playing)
-    {
-        window.clear();
-        playing = world.update();
-        window.display();
+    while(window.isOpen()){
+        World world(window, factory);
+        world.gameLoop();
     }
 }

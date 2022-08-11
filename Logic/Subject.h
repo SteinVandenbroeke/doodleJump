@@ -8,7 +8,9 @@
 #include "Observer.h"
 #include <list>
 
-
+/***
+ * Every item that needs observers
+ */
 class Subject {
 private:
     std::list<Observer *> observerList;

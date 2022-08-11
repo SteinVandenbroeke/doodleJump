@@ -9,14 +9,14 @@
 #include "../Logic/AbstractFactory.h"
 #include "Entity.h"
 
+/***
+ * ConcreteFactory for creating logic entities liked to a representative entity
+ */
 class ConcreteFactory: public AbstractFactory{
 private:
     sf::RenderWindow& window;
 public:
-    //std::vector<Platform*> getPlatforms();
-    //Doodler* getDoodler();
     ConcreteFactory(sf::RenderWindow& window);
-    //World* getWorld();
 
     std::shared_ptr<DoodlerLogic> createDoodler(World& world) override;
     std::shared_ptr<PlatformLogic> createPlatform(double locationX, double locationY,World& world) override;

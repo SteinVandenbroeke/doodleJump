@@ -72,6 +72,17 @@ bool World::update() {
     return true;
 }
 
+void World::gameLoop() {
+    bool playing = true;
+    while (playing && window.isOpen())
+    {
+        this->window.clear();
+        playing = this->update();
+        this->window.display();
+        this->window.checkForClose();
+    }
+}
+
 void World::generatePlatforms() {
     std::shared_ptr<PlatformLogic> previusPlatform = platforms.back();
     while(previusPlatform->getYLocation() < camera.getHeight() + this->camera.getScreenHeight()){
@@ -153,7 +164,7 @@ std::shared_ptr<PlatformLogic> World::getRandomPlatform(double platformXLocation
         return this->factory.createPlatform(platformXLocation, platformYLocation, *this);
     }
     else {
-        int randomNumber = random->randomNumber(0, 4);//TODO
+        int randomNumber = random->randomNumber(0, 4);
         switch (randomNumber) {
             case 0:
                 return this->factory.createHorizontalPlatform(platformXLocation,platformYLocation, *this);
