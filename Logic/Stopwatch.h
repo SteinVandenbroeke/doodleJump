@@ -8,8 +8,15 @@
 #include <iostream>
 #include <memory>
 
+/***
+ * Stopwatch singleton
+ */
 class Stopwatch {
     static std::shared_ptr<Stopwatch> instance;
+
+    /***
+     * Creates a stopwatch item and set the time to the current time
+     */
     Stopwatch(){
         previousFrameTime = std::chrono::steady_clock::now();
         framesLoadTime = 0;
@@ -29,6 +36,9 @@ public:
         return instance;
     }
 
+    /***
+     * Must be called for every game loop
+     */
     void newFrame(){
         auto currentTime = std::chrono::steady_clock::now();
         std::chrono::duration<double> elapsed_seconds = currentTime-previousFrameTime;
@@ -37,10 +47,18 @@ public:
         previousFrameTime = currentTime;
     }
 
+    /***
+     * Function that returns the loadtime for 1 frame
+     * @return
+     */
     float getFrameLoadTime(){
         return framesLoadTime;
     }
 
+    /***
+     * Function that returns the movement multiplier (for every movement calculation)
+     * @return
+     */
     float getMovementMultiplier(){
         return this->framesLoadTime * framesLoadTimeMuliplier;
     }
